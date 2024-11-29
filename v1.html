@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gauss</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+
+<body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <button id="gen">Generate</button>
+
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        let chart;
+        let data;
+
+        function drawChart() {
+            data = google.visualization.arrayToDataTable([
+                ['Número', 'Repetido'],
+                ['2', 0],
+                ['3', 0],
+                ['4', 0],
+                ['5', 0],
+                ['6', 0],
+                ['7', 0],
+                ['8', 0],
+                ['9', 0],
+                ['10', 0],
+                ['11', 0],
+                ['12', 0],
+            ]);
+
+            const options = {
+                title: 'Gauss Test by Jackson L. F. Schirigatti',
+                curveType: 'function',
+                legend: { position: 'bottom' }
+            };
+
+            chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            chart.draw(data, options);
+        }
+
+        function dice(quant) {
+            const numbers = [];
+            for (let i = 0; i < quant; i++) {
+                const randomNumber = Math.floor(Math.random() * 11) + 2;
+                numbers.push(randomNumber);
+            }
+            return numbers;
+        }
+
+        document.querySelector("#gen").addEventListener("click", () => {
+            const quant = 100;
+            const myNumbers = dice(quant);
+
+            // Conta frequência
+            const counts = {};
+            myNumbers.forEach(num => {
+                counts[num] = (counts[num] || 0) + 1;
+            });
+
+            // Atualiza
+            const rows = Object.keys(counts).map(num => [num, counts[num]]);
+
+            rows.unshift(['Número', 'Repetido']);
+
+            data = google.visualization.arrayToDataTable(rows);
+            chart.draw(data, { title: 'Gauss Test by Jackson L. F. Schirigatti', curveType: 'function', legend: { position: 'bottom' } });
+        });
+    </script>
+</body>
+
+</html>

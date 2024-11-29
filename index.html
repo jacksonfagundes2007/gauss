@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gauss</title>
+    <!-- importa o gerador de grafico do google -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
@@ -45,18 +46,24 @@
             chart.draw(data, options);
         }
 
-        function dice(quant) {
+        function dice1(quant) {
             const numbers = [];
             for (let i = 0; i < quant; i++) {
-                const randomNumber = Math.floor(Math.random() * 11) + 2;
-                numbers.push(randomNumber);
+                const randomNumber1 = Math.floor(Math.random() * 6) + 1;
+                const randomNumber2 = Math.floor(Math.random() * 6) + 1;
+
+                const numeroSomado = randomNumber1 + randomNumber2;
+
+                numbers.push(numeroSomado);
             }
+            console.log(numbers);
+            
             return numbers;
         }
 
         document.querySelector("#gen").addEventListener("click", () => {
             const quant = 100;
-            const myNumbers = dice(quant);
+            const myNumbers = dice1(quant);
 
             // Conta frequência
             const counts = {};
