@@ -7,10 +7,12 @@
     <title>Gauss</title>
     <!-- importa o gerador de grafico do google -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+    <div id="curve_chart" style="width: 500px; height: 500px"></div>
     <button id="gen">Generate</button>
 
     <script>
@@ -41,7 +43,8 @@
             const options = {
                 title: 'Gauss Test by Jackson L. F. Schirigatti',
                 curveType: 'function',
-                legend: { position: 'bottom' }
+                legend: { position: 'bottom' },
+                backgroundcolors: ['#0021FF']
             };
 
             chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
